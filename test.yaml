@@ -1,35 +1,19 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: prometheus
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: ./prometheus
-    repoURL: https://github.com/kjha27/cldcvr.git
-    targetRevision: HEAD
 
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubestatemetrics
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  name: monitoring
 spec:
   destination:
     namespace: default
-    server: https://kubernetes.default.svc
-  project: default
+    server: 'https://kubernetes.default.svc'
   source:
-    path: ./kube-state-metrics
-    repoURL: https://github.com/kjha27/cldcvr.git
+    path: mon-app
+    repoURL: 'https://github.com/kjha27/cldcvr.git'
     targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

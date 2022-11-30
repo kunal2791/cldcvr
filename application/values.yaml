@@ -1,7 +1,0 @@
-repo_prefix: https://github.com/kunal2791
-branch_name: main
-project_name: default
-
-apps:
-  server: https://kubernetes.default.svc
-  namespace: default
