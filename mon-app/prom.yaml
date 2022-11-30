@@ -12,5 +12,5 @@ spec:
   project: default
   source:
     path: ../prometheus
-    repoURL: https://github.com/kjha27/cldcvr.git
+    repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
