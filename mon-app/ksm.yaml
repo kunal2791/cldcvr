@@ -9,6 +9,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: ../kube-state-metrics
+    path: ../kube-state-metrics/
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
