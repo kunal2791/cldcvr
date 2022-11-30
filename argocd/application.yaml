@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     namespace: default
-    server: https://F7CE0DBA0488F4FDEEF121E03FB06144.gr7.us-east-1.eks.amazonaws.com
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: ./prometheus
@@ -25,7 +25,7 @@ metadata:
 spec:
   destination:
     namespace: default
-    server: https://F7CE0DBA0488F4FDEEF121E03FB06144.gr7.us-east-1.eks.amazonaws.com
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: ./kube-state-metrics
