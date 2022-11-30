@@ -867,8 +867,8 @@ server:
     ## Prometheus server Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
-    hosts: prometheus.kunal.com
-    #   - prometheus.domain.com
+    hosts: 
+      - prometheus.kunal.com
     #   - domain.com/prometheus
 
     path: /
