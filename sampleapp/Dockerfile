@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nitincypher/docker-ubuntu-python-pip
 COPY sampleapp/src/requirements.txt .
 RUN apt-get update
 RUN apt-get install -y tar git curl nano wget dialog net-tools build-essential
