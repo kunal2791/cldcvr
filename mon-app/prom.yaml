@@ -11,6 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ./prometheus
+    path: ../prometheus
     repoURL: https://github.com/kjha27/cldcvr.git
     targetRevision: HEAD
