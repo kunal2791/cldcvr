@@ -1,0 +1,24 @@
+kind: Application
+metadata:
+  name: prometheus
+  namespace: default
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  labels:
+    app.kubernetes.io/instance: apps
+spec:
+  destination:
+    server: {{ .Values.apps.server }}
+    namespace: {{ .Values.apps.namespace }}
+  project: {{ .Values.project_name }}
+  source:
+    path: app
+    repoURL: {{ .Values.repo_prefix }}/cldcvr.git
+    targetRevision: {{ .Values.branch_name }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=false
