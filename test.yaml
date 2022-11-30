@@ -9,7 +9,7 @@ spec:
     namespace: default
     server: 'https://kubernetes.default.svc'
   source:
-    path: mon-app
+    path: ./mon-app
     repoURL: 'https://github.com/kjha27/cldcvr.git'
     targetRevision: HEAD
   project: default
