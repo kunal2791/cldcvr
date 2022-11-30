@@ -1,4 +1,5 @@
 FROM ubuntu:16.04
+RUN pwd | ls
 COPY src/requirements.txt .
 RUN apt-get update
 RUN apt-get install -y tar git curl nano wget dialog net-tools build-essential
