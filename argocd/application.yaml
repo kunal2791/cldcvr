@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: default
+spec:
+  destination:
+    namespace: default
+    server: https://F7CE0DBA0488F4FDEEF121E03FB06144.gr7.us-east-1.eks.amazonaws.com
+  project: default
+  source:
+    path: ./prometheus
+    repoURL: https://github.com/kjha27/cldcvr.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-state-metrics
+  namespace: default
+spec:
+  destination:
+    namespace: default
+    server: https://F7CE0DBA0488F4FDEEF121E03FB06144.gr7.us-east-1.eks.amazonaws.com
+  project: default
+  source:
+    path: ./kube-state-metrics
+    repoURL: https://github.com/kjha27/cldcvr.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
