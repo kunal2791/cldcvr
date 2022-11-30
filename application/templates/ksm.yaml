@@ -1,25 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-state-metrics
-  namespace: argocd-local
+  name: ksm
+  namespace: {{ .Values.apps.namespace }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  labels:
-    app.kubernetes.io/instance: apps
 spec:
   destination:
-    server: {{ .Values.apps.server }}
     namespace: {{ .Values.apps.namespace }}
+    server: {{ .Values.apps.server }}
   project: {{ .Values.project_name }}
   source:
-    path: app
+    path: ./kube-state-metrics
     repoURL: {{ .Values.repo_prefix }}/cldcvr.git
-    targetRevision: {{ .Values.branch_name }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - Validate=true
-    - CreateNamespace=false
+    targetRevision: HEAD
