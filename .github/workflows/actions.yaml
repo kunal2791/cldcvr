@@ -28,6 +28,6 @@ jobs:
         IMAGE_TAG: ${{ github.run_number }}
         IMAGE_TAG2: ${{github.sha}}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f sampleapp/ .
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG2 -f sampleapp/ .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f sampleapp/Dockerfile .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG2 -f sampleapp/Dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
