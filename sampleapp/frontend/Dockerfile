@@ -21,6 +21,6 @@ EXPOSE 5100
 #Copy the current directory . in the project to the workdir . in the image.
 COPY . .
 #Makes the app library available in the python console
-RUN pip install -e .
+RUN pip install -e sampleapp/frontend/.
 
 CMD flask run -p 5100
