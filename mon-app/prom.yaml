@@ -8,9 +8,9 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: https://F7CE0DBA0488F4FDEEF121E03FB06144.gr7.us-east-1.eks.amazonaws.com
+    server: 'https://kubernetes.default.svc'
   project: default
   source:
     path: ../prometheus
     repoURL: https://github.com/kjha27/cldcvr.git
-    targetRevision: HEAD
+    targetRevision: main

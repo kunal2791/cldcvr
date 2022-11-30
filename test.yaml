@@ -4,14 +4,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: monitoring
+  namespace: argocd
 spec:
   destination:
-    namespace: default
-    server: 'https://F7CE0DBA0488F4FDEEF121E03FB06144.gr7.us-east-1.eks.amazonaws.com'
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
   source:
     path: ./mon-app
     repoURL: 'https://github.com/kunal2791/cldcvr.git'
-    targetRevision: HEAD
+    targetRevision: main
   project: default
   syncPolicy:
     automated:
