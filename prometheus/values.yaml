@@ -74,11 +74,11 @@ alertmanager:
     ## alertmanager Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
-    hosts: []
-      # - host: alertmanager.domain.com
-      #   paths:
-      #     - path: /
-      #       pathType: Prefix
+    hosts:
+      - host: alertmanager.kunal.com
+        paths:
+          - path: /
+            pathType: Prefix
 
     ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
     extraPaths: []
@@ -848,11 +848,11 @@ server:
   ingress:
     ## If true, Prometheus server Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    # ingressClassName: nginx
+    ingressClassName: nginx
 
     ## Prometheus server Ingress annotations
     ##
@@ -867,7 +867,7 @@ server:
     ## Prometheus server Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
-    hosts: [prometheus.kunal.com]
+    hosts: prometheus.kunal.com
     #   - prometheus.domain.com
     #   - domain.com/prometheus
 
