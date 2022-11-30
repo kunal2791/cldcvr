@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Values.name }}-mysql
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{.Values.name }}-mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: admin
+        - name: MYSQL_ROOT_PASSWORD
+          value: admin
+        image: mysql:latest
+        name: mysql
+        ports:
+        - name: mysqlport
+          containerPort: {{.Values.db.port }}
+          protocol: TCP

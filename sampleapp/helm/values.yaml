@@ -1,0 +1,9 @@
+replica: 1
+image:
+
+fe:
+  containerPort: 5000
+  svcPort: 80
+
+db:
+   port: 3306
