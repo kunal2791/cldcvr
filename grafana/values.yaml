@@ -637,7 +637,7 @@ dashboards:
       json: |
         $RAW_JSON
     custom-dashboard:
-      file: dashboards/custom-dashboard.json
+      file: ["dashboards/custom-dashboard.json","dashboards/pod.json"]
     prometheus-stats:
       gnetId: 2
       revision: 2
