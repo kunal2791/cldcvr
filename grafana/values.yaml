@@ -634,8 +634,8 @@ dashboardProviders:
 dashboards:
   default:
     some-dashboard:
-      # json: |
-      #   $RAW_JSON
+      json: |
+        $RAW_JSON
     custom-dashboard:
       file: dashboards/custom-dashboard.json
     prometheus-stats:
