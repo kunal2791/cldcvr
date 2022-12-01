@@ -204,8 +204,8 @@ ingress:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # ingressClassName: nginx
   # Values can be templated
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   labels: {}
   path: /
@@ -1079,7 +1079,7 @@ imageRenderer:
 networkPolicy:
   ## @param networkPolicy.enabled Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
   ##
-  enabled: false
+  enabled: true
   ## @param networkPolicy.allowExternal Don't require client label for connections
   ## The Policy model to apply. When set to false, only pods with the correct
   ## client label will have network access to  grafana port defined.
