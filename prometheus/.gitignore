@@ -1,4 +1,2 @@
-# Chart dependencies
-/charts/*/charts
-.idea
-.vscode
+requirements.lock
+Chart.lock

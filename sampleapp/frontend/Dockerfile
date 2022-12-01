@@ -3,7 +3,7 @@ FROM python:3.8-slim
 #test
 #The working directory in Docker
 WORKDIR /workdir
-#test
+
 #Copy requirements from current directory to the code directory
 COPY sampleapp/frontend/requirements.txt requirements.txt
 
