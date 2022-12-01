@@ -764,8 +764,7 @@ grafana:
     ## Hostnames.
     ## Must be provided if Ingress is enable.
     ##
-    hosts:
-      - grafana.kunal.com
+    hosts: grafana.kunal.com
     #hosts: []
 
     ## Path for grafana ingress
