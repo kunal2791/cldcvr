@@ -2206,6 +2206,11 @@ prometheus:
   #   auth: |
   #     foo:$apr1$OFG3Xybp$ckL0FHDAkoXYIlH9.cysT0
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
+  prometheus:
+
+    ## Deploy alertmanager
+    ##
+    enabled: true
 
   ingress:
     enabled: true
