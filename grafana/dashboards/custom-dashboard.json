@@ -26,7 +26,7 @@
     "fiscalYearStartMonth": 0,
     "gnetId": 3119,
     "graphTooltip": 0,
-    "id": 3,
+    "id": 1,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -360,6 +360,7 @@
       },
       {
         "datasource": {
+          "type": "prometheus",
           "uid": "$datasource"
         },
         "fieldConfig": {
@@ -429,12 +430,14 @@
             "datasource": {
               "uid": "$datasource"
             },
-            "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/xvda.$\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}) / sum (container_fs_limit_bytes{device=~\"^/dev/xvda.$\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}) * 100",
+            "editorMode": "code",
+            "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/nvme0n1p1\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}) / sum (container_fs_limit_bytes{device=~\"^/dev/nvme0n1p1\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"}) * 100",
             "format": "time_series",
             "interval": "10s",
             "intervalFactor": 1,
             "legendFormat": "",
             "metric": "",
+            "range": true,
             "refId": "A",
             "step": 10
           }
@@ -757,6 +760,7 @@
       },
       {
         "datasource": {
+          "type": "prometheus",
           "uid": "$datasource"
         },
         "fieldConfig": {
@@ -822,11 +826,13 @@
             "datasource": {
               "uid": "$datasource"
             },
-            "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/xvda.$\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"})",
+            "editorMode": "code",
+            "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/nvme0n1p1\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"})",
             "format": "time_series",
             "interval": "10s",
             "intervalFactor": 1,
             "legendFormat": "",
+            "range": true,
             "refId": "A",
             "step": 10
           }
@@ -836,6 +842,7 @@
       },
       {
         "datasource": {
+          "type": "prometheus",
           "uid": "$datasource"
         },
         "fieldConfig": {
@@ -901,11 +908,13 @@
             "datasource": {
               "uid": "$datasource"
             },
-            "expr": "sum (container_fs_limit_bytes{device=~\"^/dev/xvda.$\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"})",
+            "editorMode": "code",
+            "expr": "sum (container_fs_limit_bytes{device=~\"^/dev/nvme0n1p1\",id=\"/\",kubernetes_io_hostname=~\"^$Node$\"})",
             "format": "time_series",
             "interval": "10s",
             "intervalFactor": 1,
             "legendFormat": "",
+            "range": true,
             "refId": "A",
             "step": 10
           }
@@ -1841,13 +1850,15 @@
             "editable": true,
             "error": false,
             "fill": 0,
+            "fillGradient": 0,
             "grid": {},
             "gridPos": {
               "h": 14,
               "w": 24,
               "x": 0,
-              "y": 51
+              "y": 52
             },
+            "hiddenSeries": false,
             "id": 28,
             "legend": {
               "alignAsTable": true,
@@ -1867,7 +1878,11 @@
             "linewidth": 2,
             "links": [],
             "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
             "percentage": false,
+            "pluginVersion": "9.2.5",
             "pointradius": 5,
             "points": false,
             "renderer": "flot",
@@ -1891,6 +1906,7 @@
               }
             ],
             "thresholds": [],
+            "timeRegions": [],
             "title": "All processes memory usage",
             "tooltip": {
               "msResolution": false,
@@ -1915,7 +1931,10 @@
                 "logBase": 1,
                 "show": false
               }
-            ]
+            ],
+            "yaxis": {
+              "align": false
+            }
           }
         ],
         "targets": [
