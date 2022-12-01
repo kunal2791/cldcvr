@@ -1488,7 +1488,7 @@ prometheus-pushgateway:
   # Enable this if you're using https://github.com/coreos/prometheus-operator
   serviceMonitor:
     enabled: ture
-    namespace: default
+    namespace: argocd
 
     # Fallback to the prometheus default unless specified
     # interval: 10s
