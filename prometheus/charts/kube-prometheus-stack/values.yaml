@@ -141,7 +141,7 @@ alertmanager:
 
   ## Deploy alertmanager
   ##
-  enabled: true
+  enabled: false
 
   ## Annotations for Alertmanager
   ##
@@ -795,9 +795,20 @@ grafana:
           enabled: false
       provider:
         allowUiUpdates: false
+    # datasources:
+    #   enabled: true
+    #   defaultDatasourceEnabled: true
+
     datasources:
-      enabled: true
-      defaultDatasourceEnabled: true
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server
+        access: proxy
+        isDefault: true
+
 
       uid: prometheus
 
@@ -2210,7 +2221,7 @@ prometheus:
 
     ## Deploy alertmanager
     ##
-    enabled: true
+    enabled: false
 
   ingress:
     enabled: true
@@ -2229,7 +2240,7 @@ prometheus:
     ## Must be provided if Ingress is enabled.
     ##
     hosts:
-      - prometheus.kunal.com
+      # - prometheus.kunal.com
     # hosts: []
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
