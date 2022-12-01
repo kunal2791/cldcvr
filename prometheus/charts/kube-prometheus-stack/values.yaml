@@ -141,7 +141,11 @@ alertmanager:
 
   ## Deploy alertmanager
   ##
+<<<<<<< HEAD
   enabled: true
+=======
+  enabled: false
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
 
   ## Annotations for Alertmanager
   ##
@@ -266,8 +270,13 @@ alertmanager:
 
     ## Hosts must be provided if Ingress is enabled.
     ##
+<<<<<<< HEAD
     hosts: 
       - alertmanager.kunal.com
+=======
+    hosts:
+       - alertmanager.kunal.com
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
 
     ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
     ##
@@ -765,7 +774,11 @@ grafana:
     ## Must be provided if Ingress is enable.
     ##
     hosts:
+<<<<<<< HEAD
       - grafana.domain.com
+=======
+      - grafana.kunal.com
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
     #hosts: []
 
     ## Path for grafana ingress
@@ -795,9 +808,26 @@ grafana:
           enabled: false
       provider:
         allowUiUpdates: false
+<<<<<<< HEAD
     datasources:
       enabled: true
       defaultDatasourceEnabled: true
+=======
+    # datasources:
+    #   enabled: true
+    #   defaultDatasourceEnabled: true
+
+    datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server
+        access: proxy
+        isDefault: true
+
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
 
       uid: prometheus
 
@@ -2206,6 +2236,14 @@ prometheus:
   #   auth: |
   #     foo:$apr1$OFG3Xybp$ckL0FHDAkoXYIlH9.cysT0
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
+<<<<<<< HEAD
+=======
+  prometheus:
+
+    ## Deploy alertmanager
+    ##
+    enabled: false
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
 
   ingress:
     enabled: true
@@ -2224,8 +2262,13 @@ prometheus:
     ## Must be provided if Ingress is enabled.
     ##
     hosts:
+<<<<<<< HEAD
       - prometheus.kunal.com
    # hosts: []
+=======
+      # - prometheus.kunal.com
+    # hosts: []
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##

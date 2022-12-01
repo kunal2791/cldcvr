@@ -856,8 +856,8 @@ server:
 
     ## Prometheus server Ingress annotations
     ##
-    annotations: {}
-    #   kubernetes.io/ingress.class: nginx
+    annotations:
+      kubernetes.io/ingress.class: nginx
     #   kubernetes.io/tls-acme: 'true'
 
     ## Prometheus server Ingress additional labels
@@ -867,8 +867,13 @@ server:
     ## Prometheus server Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
+<<<<<<< HEAD
     hosts: []
     #   - prometheus.domain.com
+=======
+    hosts:
+      - prometheus.domain.com
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
     #   - domain.com/prometheus
 
     path: /
@@ -1487,7 +1492,7 @@ prometheus-pushgateway:
 
   # Enable this if you're using https://github.com/coreos/prometheus-operator
   serviceMonitor:
-    enabled: false
+    enabled: true
     namespace: monitoring
 
     # Fallback to the prometheus default unless specified

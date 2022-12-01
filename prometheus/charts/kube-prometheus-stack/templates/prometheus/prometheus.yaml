@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 {{- if .Values.prometheus.enabled }}
+=======
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
@@ -389,4 +392,8 @@ spec:
   minReadySeconds: {{ .Values.prometheus.prometheusSpec.minReadySeconds }}
 {{- end }}
   hostNetwork: {{ .Values.prometheus.prometheusSpec.hostNetwork }}
+<<<<<<< HEAD
 {{- end }}
+=======
+
+>>>>>>> 12e163ec6eec0e2523f8282f1b2dd01946ce96b4
