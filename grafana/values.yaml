@@ -300,7 +300,7 @@ extraContainerVolumes: []
 ##
 persistence:
   type: pvc
-  enabled: false
+  enabled: true
   storageClassName: default
   accessModes:
     - ReadWriteOnce
@@ -321,6 +321,7 @@ persistence:
   ##
   inMemory:
     enabled: false
+  
     ## The maximum usage on memory medium EmptyDir would be
     ## the minimum value between the SizeLimit specified
     ## here and the sum of memory limits of all containers in a pod
