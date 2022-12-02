@@ -4,7 +4,7 @@ namespace: default
 fe:
   port: 5100
   image: 720259637361.dkr.ecr.us-east-1.amazonaws.com/sampleapp
-  tag: 4
+  tag: 8
 be:
   port: 5200
   image: 720259637361.dkr.ecr.us-east-1.amazonaws.com/sampleapp:backend
