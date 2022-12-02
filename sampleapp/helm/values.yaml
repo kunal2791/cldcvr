@@ -8,3 +8,4 @@ fe:
 be:
   port: 5200
   image: 720259637361.dkr.ecr.us-east-1.amazonaws.com/sampleapp:backend
+0 image tag

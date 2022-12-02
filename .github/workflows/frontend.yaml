@@ -38,6 +38,7 @@ jobs:
     - name: Commit files
       run: |
         sed -i -e 's/tag: .*$/tag: ${{ github.run_number }}/g' ./sampleapp/helm/values.yaml
+        echo "#updated image tag with ${{ github.run_number }}" >> mon-app/sampleapp.yaml
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git commit -a -m "Add changes"
