@@ -34,12 +34,15 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG2 -f sampleapp/frontend/Dockerfile .
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:frontend -f sampleapp/frontend/Dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
-    - name: Create local changes
+
+    - name: Commit files
       run: |
         sed -e 's/tag: .*$/tag: ${{ github.run_number }}/g' ./sampleapp/helm/values.yaml
-        git add ./sampleapp/helm/values.yaml
-        git commit -m "updated image"
-    - name: Commit & Push changes
-      uses: actions-js/push@master
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
