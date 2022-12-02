@@ -17,3 +17,4 @@ spec:
     path: sampleapp/helm
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
+#updated image tag with 10
