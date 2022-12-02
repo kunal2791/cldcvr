@@ -37,6 +37,7 @@ jobs:
     - name: Create local changes
       run: |
         sed -e 's/tag: .*$/tag: ${{ github.run_number }}/g' ./sampleapp/helm/values.yaml
+        git add ./sampleapp/helm/values.yaml
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
