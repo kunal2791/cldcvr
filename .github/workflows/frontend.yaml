@@ -38,6 +38,8 @@ jobs:
       run: |
         sed -e 's/tag: .*$/tag: ${{ github.run_number }}/g' ./sampleapp/helm/values.yaml
         git add ./sampleapp/helm/values.yaml
+        git commit -m "updated image"
+        git push origin main
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
