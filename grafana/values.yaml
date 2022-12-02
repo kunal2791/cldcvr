@@ -299,9 +299,9 @@ extraContainerVolumes: []
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  type: gp2
+  type: pvc
   enabled: true
-  storageClassName: default
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   size: 10Gi
