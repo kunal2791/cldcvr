@@ -299,7 +299,7 @@ extraContainerVolumes: []
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
 persistence:
-  type: pvc
+  type: gp2
   enabled: true
   storageClassName: default
   accessModes:
