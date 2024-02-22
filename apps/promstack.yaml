@@ -6,8 +6,11 @@ metadata:
   name: kube-prometheus-stack
   namespace: argocd
 spec:
+  syncPolicy:
+    automated:
+      prune: true
   destination:
-    namespace: monitoring
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -20,16 +23,8 @@ spec:
         prometheusOperator:
            admissionWebhooks:
              failurePolicy: Ignore
-        additionalScrapeConfigs:
-        - job_name: 'argocd'
-          static_configs:
-          - targets: ['argocd-server-metrics.argocd.cluster.local:8083']
-            labels:
-              app: argocd
-              namespace: argocd
-          metrics_path: /metrics   # Add this line to specify the path
-      repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 42.0.3
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 42.0.3
   syncPolicy:
     syncOptions:
     - ServerSideApply=true
