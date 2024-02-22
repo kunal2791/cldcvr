@@ -14,6 +14,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: monitoring/charts/kube-prometheus-stack/
+    # path: monitoring/charts/kube-prometheus-stack/
+    path: prometheus
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
