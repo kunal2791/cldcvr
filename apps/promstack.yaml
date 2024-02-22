@@ -30,7 +30,7 @@ metadata:
   name: monitoring-stack
   # Add labels and annotations if needed
 spec:
-  project: monitoring
+  project: default
   source:
     repositories:
       - name: prometheus
