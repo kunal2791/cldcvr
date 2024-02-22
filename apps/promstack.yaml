@@ -23,7 +23,7 @@ spec:
         prometheusOperator:
           admissionWebhooks:
             failurePolicy: Ignore
-        additionalScrapeConfigs: |
+        additionalScrapeConfigs:
           - job_name: argocd
             static_configs: 
               - targets: ["argocd-metrics:8082/metrics"]
