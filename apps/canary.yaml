@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sampleapp
-  namespace: argocd
+  name: canarydep
+  namespace:  argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,16 +10,10 @@ spec:
     automated:
       prune: true
   destination:
-    namespace: argocd
+    namespace:  argocd
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: sampleapp/helm
+    path: canary
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
-
-#updated image tag with 17
-#updated image tag with 18
-#updated image tag with 19
-#updated image tag with 20
-#updated image tag with 21
