@@ -516,6 +516,11 @@ datasources:
      url: http://prometheus-server
      access: proxy
      isDefault: true
+   - name: loki
+     type: loki
+     url: http://loki
+     access: proxy
+     isDefault: true
 #    - name: CloudWatch
 #      type: cloudwatch
 #      access: proxy
