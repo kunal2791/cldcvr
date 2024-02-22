@@ -1,26 +1,77 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: monitoring
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     chart: kube-prometheus-stack
+#     repoURL: https://prometheus-community.github.io/helm-charts
+#     targetRevision: 41.6.1
+#   destination:
+#     namespace: argocd
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - ServerSideApply=true
+#       - CreateNamespace=true
+#   ignoreDifferences:
+#   - group: monitoring.coreos.com
+#     kind: ServiceMonitor
+#     jqPathExpressions:
+#     - .spec.endpoints[]?.relabelings[]?.action
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
-  namespace: argocd
+  name: monitoring-stack
+  # Add labels and annotations if needed
 spec:
-  project: default
+  project: monitoring
   source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 41.6.1
+    repositories:
+      - name: prometheus
+        repoURL: https://github.com/helm/charts/tree/master/stable/prometheus-operator
+        targetRevision: HEAD # Specify desired revision
+      - name: grafana
+        repoURL: https://artifacthub.io/packages/helm/grafana/grafana
+        targetRevision: HEAD
+      - name: loki
+        repoURL: https://grafana.com/docs/loki/latest/setup/install/helm/
+        targetRevision: HEAD
+      - name: promtail
+        repoURL: https://github.com/grafana/helm-charts/blob/main/charts/promtail/values.yaml
+        targetRevision: HEAD
   destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - ServerSideApply=true
-      - CreateNamespace=true
-  ignoreDifferences:
-  - group: monitoring.coreos.com
-    kind: ServiceMonitor
-    jqPathExpressions:
-    - .spec.endpoints[]?.relabelings[]?.action
+    serverURL: https://kubernetes.default.svc # Replace with your ArgoCD server URL
+    namespace: argocd # Replace with desired namespace
+  helmOperator:
+    # Define individual charts for each component with overrides
+    charts:
+      - name: prometheus
+        chart: prometheus-operator
+        repository: prometheus
+        version: "13.3.0" # Replace with specific version
+        values: |-
+          # Your Prometheus overrides here
+      - name: grafana
+        chart: grafana
+        repository: grafana
+        version: "8.3.1" # Replace with specific version
+        values: |-
+          # Your Grafana overrides here
+      - name: loki
+        chart: loki
+        repository: loki
+        version: "2.5.0" # Replace with specific version
+        values: |-
+          # Your Loki overrides here
+      - name: promtail
+        chart: promtail
+        repository: promtail
+        version: "2.5.0" # Replace with specific version
+        values: |-
+          # Your Promtail overrides here
