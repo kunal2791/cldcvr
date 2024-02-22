@@ -28,7 +28,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: monitoring-stack
-  # Add labels and annotations if needed
+  namespace:  argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
