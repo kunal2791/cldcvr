@@ -55,8 +55,8 @@ spec:
         chart: prometheus-operator
         repository: prometheus
         version: "13.3.0" # Replace with specific version
-        values: |-
-          # Your Prometheus overrides here
+        # values: |-
+        #   # Your Prometheus overrides here
       - name: grafana
         chart: grafana
         repository: grafana
@@ -67,11 +67,11 @@ spec:
         chart: loki
         repository: loki
         version: "2.5.0" # Replace with specific version
-        values: |-
-          # Your Loki overrides here
+        # values: |-
+        #   # Your Loki overrides here
       - name: promtail
         chart: promtail
         repository: promtail
         version: "2.5.0" # Replace with specific version
-        values: |-
-          # Your Promtail overrides here
+        # values: |-
+        #   # Your Promtail overrides here
