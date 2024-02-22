@@ -25,7 +25,4 @@ spec:
             failurePolicy: Ignore
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 42.0.3
-  syncPolicy:
-    syncOptions:
-      - ServerSideApply=true
-      - CreateNamespace=true
+
