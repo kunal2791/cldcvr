@@ -1,26 +1,46 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: monitoring
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     chart: kube-prometheus-stack
+#     repoURL: https://prometheus-community.github.io/helm-charts
+#     targetRevision: 41.6.1
+#   destination:
+#     namespace: argocd
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - ServerSideApply=true
+#       - CreateNamespace=true
+#   ignoreDifferences:
+#   - group: monitoring.coreos.com
+#     kind: ServiceMonitor
+#     jqPathExpressions:
+#     - .spec.endpoints[]?.relabelings[]?.action
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
-  namespace: argocd
+  name: prometheus
+  namespace:  argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
-  source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 41.6.1
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
-    syncOptions:
-      - ServerSideApply=true
-      - CreateNamespace=true
-  ignoreDifferences:
-  - group: monitoring.coreos.com
-    kind: ServiceMonitor
-    jqPathExpressions:
-    - .spec.endpoints[]?.relabelings[]?.action
+  destination:
+    namespace:  argocd
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: kube-state-metrics
+    repoURL: https://github.com/kunal2791/cldcvr.git
+    targetRevision: main
