@@ -1044,7 +1044,7 @@ grafana:
 
       ## URL of prometheus datasource
       ##
-      url: http://prometheus:9090/
+      url: http://prometheus-server:9090/
 
       ## Prometheus request timeout in seconds
       # timeout: 30
