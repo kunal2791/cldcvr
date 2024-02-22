@@ -1994,6 +1994,13 @@ serverFiles:
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
 extraScrapeConfigs:
+    - job_name: argocd
+      static_configs: 
+        - targets: ["argocd-metrics:8082/metrics"]
+    - job_name: argocd-server
+      static_configs: 
+        - targets: ["argocd-server-metrics:8083/metrics"]
+
   # - job_name: 'prometheus-blackbox-exporter'
   #   metrics_path: /probe
   #   params:
