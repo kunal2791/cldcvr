@@ -23,6 +23,13 @@ spec:
         prometheusOperator:
           admissionWebhooks:
             failurePolicy: Ignore
+        additionalScrapeConfigs: |
+          - job_name: argocd
+            static_configs: 
+              - targets: ["argocd-metrics:8082/metrics"]
+          - job_name: argocd-server
+            static_configs: 
+              - targets: ["argocd-server-metrics:8083/metrics"]
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 42.0.3
 
