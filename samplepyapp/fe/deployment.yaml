@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: do-visit-counter-frontend
-          image: kunal2791/do-visit-counter-frontend:v1
+          image: kunal2791/do-visit-counter-frontend:v2
           imagePullPolicy: Always
           env:
             - name: COUNTER_ENDPOINT
