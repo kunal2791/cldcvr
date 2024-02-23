@@ -57,7 +57,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: opentelemetry-helm-charts/charts/opentelemetry-collector
+    path: telemetry/
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
 ---
