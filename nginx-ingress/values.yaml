@@ -291,7 +291,7 @@ controller:
 
     httpsPort:
       ## Enables the HTTPS port for the Ingress Controller service.
-      enable: true
+      enable: false
 
       ## The HTTPS port of the Ingress Controller service.
       port: 443
