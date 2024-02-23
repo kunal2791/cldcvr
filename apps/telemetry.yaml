@@ -1,23 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-opentelemetry-operator
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: opentelemetry-operator-system
-  # source:
-  #   helm:
-  #     valueFiles:
-  #       - values.yaml # Optional: if you have custom values, provide them here
-    chart: opentelemetry-operator
-    repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
-    #targetRevision: # Optional: specify the chart version if necessary
-  project: default # Adjust if you want to use a different project
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: telemetry-agent
   namespace:  argocd
   finalizers:
