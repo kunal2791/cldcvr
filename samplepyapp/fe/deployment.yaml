@@ -23,6 +23,9 @@ spec:
           env:
             - name: COUNTER_ENDPOINT
               value: "http://do-visit-counter-backend.default.svc.cluster.local:5000"
+          # the URL to which traces will be sent from the application
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://jaeger-collector.observability.svc.cluster.local:4318
           ports:
             - name: frontend-port
               containerPort: 8000
