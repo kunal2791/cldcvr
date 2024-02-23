@@ -1,7 +1,9 @@
+
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: telemetry-agent
+  name: telemetry-operator
   namespace:  argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -14,6 +16,67 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: telemetry
+    path: opentelemetry-helm-charts/charts/opentelemetry-operator
+    repoURL: https://github.com/kunal2791/cldcvr.git
+    targetRevision: main
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: telemetryebpf-agent
+  namespace:  argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+  destination:
+    namespace:  argocd
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: opentelemetry-helm-charts/charts/opentelemetry-ebpf
+    repoURL: https://github.com/kunal2791/cldcvr.git
+    targetRevision: main
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: telemetry-collector
+  namespace:  argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+  destination:
+    namespace:  argocd
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: opentelemetry-helm-charts/charts/opentelemetry-collector
+    repoURL: https://github.com/kunal2791/cldcvr.git
+    targetRevision: main
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: telemetry-demo
+  namespace:  argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated:
+      prune: true
+  destination:
+    namespace:  argocd
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: opentelemetry-helm-charts/charts/opentelemetry-demo
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
