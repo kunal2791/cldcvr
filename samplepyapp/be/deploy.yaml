@@ -36,3 +36,8 @@ spec:
         - protocol: TCP
           port: 5000
           targetPort: 5000
+---
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: simplest

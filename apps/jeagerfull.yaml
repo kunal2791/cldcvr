@@ -1,39 +1,39 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: jaegertracing
-  namespace:  argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  syncPolicy:
-    automated:
-      prune: true
-  destination:
-    namespace:  argocd
-    server: 'https://kubernetes.default.svc'
-  project: default
-  source:
-    path: jaggertracing/helm-charts/charts/jaeger/
-    repoURL: https://github.com/kunal2791/cldcvr.git
-    targetRevision: main
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: jaegeroperatior
-  namespace:  argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  syncPolicy:
-    automated:
-      prune: true
-  destination:
-    namespace:  argocd
-    server: 'https://kubernetes.default.svc'
-  project: default
-  source:
-    path: jaggertracing/helm-charts/charts/jaeger-operator/
-    repoURL: https://github.com/kunal2791/cldcvr.git
-    targetRevision: main
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: jaegertracing
+#   namespace:  argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   syncPolicy:
+#     automated:
+#       prune: true
+#   destination:
+#     namespace:  argocd
+#     server: 'https://kubernetes.default.svc'
+#   project: default
+#   source:
+#     path: jaggertracing/helm-charts/charts/jaeger/
+#     repoURL: https://github.com/kunal2791/cldcvr.git
+#     targetRevision: main
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: jaegeroperatior
+#   namespace:  argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   syncPolicy:
+#     automated:
+#       prune: true
+#   destination:
+#     namespace:  argocd
+#     server: 'https://kubernetes.default.svc'
+#   project: default
+#   source:
+#     path: jaggertracing/helm-charts/charts/jaeger-operator/
+#     repoURL: https://github.com/kunal2791/cldcvr.git
+#     targetRevision: main
