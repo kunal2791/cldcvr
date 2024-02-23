@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sampleapptracingfe
+  name: sampleapptracingbe
   namespace:  argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -14,7 +14,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: samplepyapp/fe
+    path: samplepyapp/be/
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
 
