@@ -528,9 +528,13 @@ controller:
     internal:
       # -- Enable the internal controller service or not. Remember to configure `controller.service.internal.annotations` when enabling this.
       enabled: true
+      annotations:
+        # Create internal LB. More information: https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing
+        # For GKE versions 1.17 and later
+        networking.gke.io/load-balancer-type: "Internal"
       # -- Annotations to be added to the internal controller service. Mandatory for the internal controller service to be created. Varies with the cloud service.
       # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-      annotations: {}
+      #annotations: {}
       # -- Type of the internal controller service.
       # Defaults to the value of `controller.service.type`.
       # Ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
