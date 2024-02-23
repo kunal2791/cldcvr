@@ -1,39 +1,56 @@
-from random import randint
-from time import sleep
-
-from flask import Flask
-from flask import request
-from jaeger_client import Config
-from flask_opentracing import FlaskTracing
-
+import re
+import os
+import logging
+from flask import Flask, render_template, request, redirect, url_for, jsonify, make_response
+from prometheus_flask_exporter import PrometheusMetrics
+from opentelemetry import trace
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import Compression
+from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 
 app = Flask(__name__)
-config = Config(
-    config={
-        'sampler':
-        {'type': 'const',
-         'param': 1},
-                        'logging': True,
-                        'reporter_batch_size': 1,}, 
-                        service_name="service")
-jaeger_tracer = config.initialize_tracer()
-tracing = FlaskTracing(jaeger_tracer, True, app)
 
-counter_value = 1
+#  OpenTelemetry
+resource = Resource.create({SERVICE_NAME: "grafana-tempo-demo"})
+trace.set_tracer_provider(TracerProvider(resource=resource))
 
-def get_counter():
-    return str(counter_value)
+# OTLP Exporter
+otlp_exporter = OTLPSpanExporter(endpoint="grafana-tempo:4317", insecure="true")
+span_processor = BatchSpanProcessor(otlp_exporter)
+trace.get_tracer_provider().add_span_processor(span_processor)
 
-def increase_counter():
-    global counter_value
-    int(counter_value)
-    sleep(randint(1,10))
-    counter_value += 1
-    return str(counter_value)
+# PrometheusMetrics
+metrics = PrometheusMetrics(app)
+metrics.info('app_info', 'App Information', version='1.0.0')
 
-@app.route('/api/counter', methods=['GET', 'POST'])
-def counter():
-    if request.method == 'GET':
-        return get_counter()
-    elif request.method == 'POST':
-        return increase_counter()
+#logs 
+#log formatter
+class SpanFormatter(logging.Formatter):
+    def format(self, record):
+        trace_id = trace.get_current_span().get_span_context().trace_id
+        if trace_id == 0:
+            record.trace_id = None
+        else:
+            record.trace_id = "{trace:32x}".format(trace=trace_id)
+        return super().format(record)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = SpanFormatter('level=%(levelname)s msg=%(message)s TraceID=%(trace_id)s')
+handler = logging.FileHandler('app2-teste.log')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
+# Flask Instrumetation 
+FlaskInstrumentor().instrument_app(app)
+
+@app.route('/')
+def index():
+    logger.info("hello-word")
+    return "hello-word"
+
+
+if __name__ == "__main__":
+  app.run(host="0.0.0.0", port=5555)

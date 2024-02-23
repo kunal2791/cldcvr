@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: do-visit-counter-backend
-          image: kunal2791/do-visit-counter-beckend:v2
+          image: kunal2791/test-tempo:v1
           imagePullPolicy: Always
           ports:
             - name: backend-port
@@ -36,8 +36,3 @@ spec:
         - protocol: TCP
           port: 5000
           targetPort: 5000
----
-apiVersion: jaegertracing.io/v1
-kind: Jaeger
-metadata:
-  name: simplest
