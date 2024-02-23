@@ -10,7 +10,7 @@ spec:
     automated:
       prune: true
   destination:
-    namespace:  argocd
+    namespace:  default
     server: 'https://kubernetes.default.svc'
   project: default
   source:
