@@ -5,7 +5,7 @@ RUN apk add --no-cache py3-pip python3 && \
 
 COPY . /usr/src/backend
 
-ENV FLASK_APP backend.py
+ENV FLASK_APP app.py
 
 WORKDIR /usr/src/backend
 
