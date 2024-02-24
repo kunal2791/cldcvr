@@ -3,8 +3,8 @@ name: sampleapp
 namespace: default
 fe:
   port: 5100
-  image: 720259637361.dkr.ecr.us-east-1.amazonaws.com/sampleapp
+  image: kunal2791/testappfe:v1
   tag: 21
 be:
   port: 5200
-  image: 720259637361.dkr.ecr.us-east-1.amazonaws.com/sampleapp:backend
+  image: kunal2791/testapp:v1
