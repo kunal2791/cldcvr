@@ -4,10 +4,10 @@ metadata:
   name: {{.Values.name }}-fe
   namespace: {{.Values.namespace }}
   annotations:
-    kubernetes.io/ingress.class: nginx-internal
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: a3c2cfeea30754925bdbc08fdc1d41dd-8c2fbc507df78602.elb.eu-central-1.amazonaws.com
+  - host: fe.kunal.com
     http:
       paths:
       - path: /
