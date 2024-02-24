@@ -4,7 +4,7 @@ namespace: default
 fe:
   port: 5100
   image: kunal2791/testappfe:v1
-  tag: 21
+  #tag: 21
 be:
   port: 5200
   image: kunal2791/testapp:v1
