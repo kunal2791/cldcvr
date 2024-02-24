@@ -4,20 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       fruits:
+        type: choice
         description: 'Select fruits to deploy'
-        required: true
-        default: 'apple'  # Default value if no input provided
-
+        options:
+        - apple
+        - orange
+        - banana
+        - mango
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        fruit:
-          - apple
-          - banana
-          - orange
 
     steps:
     - name: Checkout code
