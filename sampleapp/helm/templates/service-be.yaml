@@ -1,17 +1,17 @@
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{.Values.name }}-be
-  namespace: {{.Values.namespace }}
-  labels:
-    service: {{.Values.name }}-be
-spec:
-  type: ClusterIP
-  selector:
-    app: {{.Values.name }}-be
-  ports:
-  - name: "bind-backend"
-    protocol: "TCP"
-    port: {{.Values.be.port }}
-    targetPort: {{.Values.be.port }}  
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{.Values.name }}-be
+#   namespace: {{.Values.namespace }}
+#   labels:
+#     service: {{.Values.name }}-be
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: {{.Values.name }}-be
+#   ports:
+#   - name: "bind-backend"
+#     protocol: "TCP"
+#     port: {{.Values.be.port }}
+#     targetPort: {{.Values.be.port }}  
