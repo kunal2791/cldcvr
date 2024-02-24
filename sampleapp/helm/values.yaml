@@ -2,9 +2,9 @@ replica: 1
 name: sampleapp
 namespace: default
 fe:
-  port: 5100
+  port: 80
   image: nginx
   tag: latest
 be:
-  port: 5200
+  port: 80
   image: nginx
