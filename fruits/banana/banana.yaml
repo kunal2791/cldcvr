@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: banana-project
+spec:
+  type: ClusterIP
+  ports:
+  - name: "bind-frontend"
+    protocol: "TCP"
+    port: 80
+    targetPort: 80
+  selector:
+    app: banana-project
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banana-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: banana-project
+  template:
+    metadata:
+      labels:
+        app: banana-project
+    spec:
+      containers:
+        - name: nginx
+          image: kunal2791/banana:v3
+          ports:
+            - containerPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: banana-project
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: a2a0f84efe0a24d3e8e6d90a5ef8aed7-79232029.eu-central-1.elb.amazonaws.com
+      http:
+        paths:
+          - path: /banana
+            pathType: Prefix
+            backend:
+              service:
+                name: banana-project
+                port:
+                  number: 80

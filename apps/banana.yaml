@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sampleapptracingfe
+  name: canarydep
   namespace:  argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -10,16 +10,10 @@ spec:
     automated:
       prune: true
   destination:
-    namespace:  argocd
+    namespace: apple
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: samplepyapp/fe/
+    path: fruits/apple
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
-
-#updated image tag with 17
-#updated image tag with 18
-#updated image tag with 19
-#updated image tag with 20
-#updated image tag with 21

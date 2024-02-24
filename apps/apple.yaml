@@ -10,10 +10,10 @@ spec:
     automated:
       prune: true
   destination:
-    namespace:  argocd
+    namespace: apple
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: canary
+    path: fruits/apple
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
