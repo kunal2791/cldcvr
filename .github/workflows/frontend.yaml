@@ -20,9 +20,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Deploy to EKS
-      env:
-        FRUIT: ${{ matrix.fruit }}
       run: |
-        echo "Selected fruit: $FRUIT"
+        echo "Selected fruit: ${{ github.event.inputs.fruits }}"
         # Use kubectl or eksctl to deploy the selected fruit to EKS
-        # Example: kubectl apply -f deployment-${FRUIT}.yaml
+        #kubectl apply -f aps/${{ github.event.inputs.fruits }}.yaml
