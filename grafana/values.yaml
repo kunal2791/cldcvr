@@ -359,7 +359,7 @@ initChownData:
 
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
-# adminPassword: strongpassword
+adminPassword: admin
 
 # Use an existing secret for the admin user.
 admin:
@@ -745,6 +745,7 @@ smtp:
   existingSecret: ""
   userKey: "user"
   passwordKey: "password"
+
 
 ## Sidecars that collect the configmaps with specified label and stores the included files them into the respective folders
 ## Requires at least Grafana 5 to work and can't be used together with parameters dashboardProviders, datasources and dashboards
