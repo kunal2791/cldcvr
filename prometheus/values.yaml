@@ -75,9 +75,9 @@ alertmanager:
     ## Must be provided if Ingress is enabled
     ##
     hosts:
-      - host: alertmanager.kunal.com
+      - host: a2a0f84efe0a24d3e8e6d90a5ef8aed7-79232029.eu-central-1.elb.amazonaws.com
         paths:
-          - path: /
+          - path: /prometheus
             pathType: Prefix
 
     ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
