@@ -1,4 +1,5 @@
 name: Deploy Fruits to EKS
+
 on:
   workflow_dispatch:
     inputs:
@@ -6,26 +7,26 @@ on:
         description: 'Select fruits to deploy'
         required: true
         default: 'apple'  # Default value if no input provided
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        fruit:
+          - apple
+          - banana
+          - orange
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
-    - name: Prompt for fruit selection
-      id: prompt
-      uses: technote-space/action-input@v2
-      with:
-        options: 'apple,banana,orange,mango'
-        prompt: 'Select fruits to deploy'
-        required: true
 
     - name: Deploy to EKS
       env:
-        FRUITS: ${{ steps.prompt.outputs.value }}
+        FRUIT: ${{ matrix.fruit }}
       run: |
-        echo "Selected fruits: $FRUITS"
-        # Use kubectl or eksctl to deploy selected fruits to EKS
-        # Example: kubectl apply -f deployment.yaml
+        echo "Selected fruit: $FRUIT"
+        # Use kubectl or eksctl to deploy the selected fruit to EKS
+        # Example: kubectl apply -f deployment-${FRUIT}.yaml
