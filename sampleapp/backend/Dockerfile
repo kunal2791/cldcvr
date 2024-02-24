@@ -5,7 +5,7 @@ FROM python:3.8-slim
 WORKDIR /workdir
 
 #Copy requirements from current directory to the code directory
-COPY sampleapp/backend/requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 
 #Install libraries
 RUN pip install -r requirements.txt
