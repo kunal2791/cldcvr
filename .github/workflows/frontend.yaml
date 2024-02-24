@@ -1,47 +1,31 @@
-name: Deploy to ECR
+name: Deploy Fruits to EKS
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'sampleapp/frontend/Dockerfile' 
+  workflow_dispatch:
+    inputs:
+      fruits:
+        description: 'Select fruits to deploy'
+        required: true
+        default: 'apple'  # Default value if no input provided
 jobs:
-  build:
-    name: Build Image
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Check out code
+    - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      
+    - name: Prompt for fruit selection
+      id: prompt
+      uses: technote-space/action-input@v2
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-        aws-region: us-east-1
+        options: 'apple,banana,orange,mango'
+        prompt: 'Select fruits to deploy'
+        required: true
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Build, tag, and push image to Amazon ECR
+    - name: Deploy to EKS
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: sampleapp
-        IMAGE_TAG: ${{ github.run_number }}
-        IMAGE_TAG2: ${{github.sha}}
+        FRUITS: ${{ steps.prompt.outputs.value }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f sampleapp/frontend/Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY --all-tags
-
-    - name: Commit files
-      run: |
-        sed -i -e 's/tag: .*$/tag: ${{ github.run_number }}/g' ./sampleapp/helm/values.yaml
-        echo "#updated image tag with ${{ github.run_number }}" >> mon-app/sampleapp.yaml
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+        echo "Selected fruits: $FRUITS"
+        # Use kubectl or eksctl to deploy selected fruits to EKS
+        # Example: kubectl apply -f deployment.yaml
