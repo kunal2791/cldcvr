@@ -3,8 +3,8 @@ name: sampleapp
 namespace: default
 fe:
   port: 5100
-  image: kunal2791/testappfe:v1
-  #tag: 21
+  image: kunal2791/testappfe
+  tag: v1
 be:
   port: 5200
-  image: kunal2791/testapp:v1
+  image: kunal2791/testapp

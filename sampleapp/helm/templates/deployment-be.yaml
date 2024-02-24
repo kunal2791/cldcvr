@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{.Values.name }}-be
-        image: {{.Values.be.image }}
+        image: {{.Values.be.image }}:{{.Values.fe.tag }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{.Values.be.port }} 
