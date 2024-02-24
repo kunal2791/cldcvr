@@ -16,6 +16,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: fruits/apple
+    path: fruits/banana
     repoURL: https://github.com/kunal2791/cldcvr.git
     targetRevision: main
