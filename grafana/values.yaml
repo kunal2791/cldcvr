@@ -214,7 +214,7 @@ ingress:
   pathType: Prefix
 
   hosts:
-    - d3sfc6yopsuer9.cloudfront.net
+    - a2a0f84efe0a24d3e8e6d90a5ef8aed7-79232029.eu-central-1.elb.amazonaws.com
   ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   extraPaths: []
   # - path: /*
