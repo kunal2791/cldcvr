@@ -41,7 +41,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: a2a0f84efe0a24d3e8e6d90a5ef8aed7-79232029.eu-central-1.elb.amazonaws.com
+    - host: ad69bdac788824185a939c4538de3bcf-6bf1aa249ccc49e1.elb.eu-central-1.amazonaws.com
       http:
         paths:
           - path: /apple
