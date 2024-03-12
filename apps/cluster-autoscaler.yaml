@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: matrix-server
   namespace: default
 spec:
   destination:
@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ./observablity/Grafana/kube-prometheus-stack/
+    path: ./cluster-autoscaler/
     repoURL: https://github.com/kjha27/cldcvr.git
     targetRevision: main
   syncPolicy:
