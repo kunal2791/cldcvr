@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: test
+  name: nginx-deployment
+  labels:
+    k8s-app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: nginx
+  template:
+    metadata:
+      labels:
+        k8s-app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.4
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "0.5"
+          limits:
+            memory: "200Mi"
+            cpu: "0.5"
+---
+# ------------------- Dashboard Service ------------------- #
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: nginx
+  name: nginx
+  namespace: test
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+  selector:
+    k8s-app: nginx
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx
+  namespace: test
+spec:
+  maxReplicas: 3
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
+  targetCPUUtilizationPercentage: 1
