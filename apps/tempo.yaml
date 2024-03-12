@@ -11,7 +11,7 @@ spec:
     automated:
       prune: true
   destination:
-    namespace:  argocd
+    namespace:  observability
     server: 'https://kubernetes.default.svc'
   project: default
   source:
