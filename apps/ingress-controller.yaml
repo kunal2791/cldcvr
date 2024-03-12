@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ./ingress-nginx/charts/ingress-nginx/
+    path: ingress-nginx/charts/ingress-nginx/
     repoURL: https://github.com/kjha27/cldcvr.git
     targetRevision: main
   syncPolicy:
