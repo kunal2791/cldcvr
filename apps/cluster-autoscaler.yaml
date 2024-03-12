@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: matrix-server
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: default
