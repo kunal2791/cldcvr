@@ -1,20 +1,20 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: clusterautoscaler
-  namespace:  argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  syncPolicy:
-    automated:
-      prune: true
-  destination:
-    namespace:  default
-    server: 'https://kubernetes.default.svc'
-  project: default
-  source:
-    path: cluster-autoscaler/
-    repoURL: https://github.com/kunal2791/cldcvr.git
-    targetRevision: main
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: clusterautoscaler
+#   namespace:  argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   syncPolicy:
+#     automated:
+#       prune: true
+#   destination:
+#     namespace:  default
+#     server: 'https://kubernetes.default.svc'
+#   project: default
+#   source:
+#     path: cluster-autoscaler/
+#     repoURL: https://github.com/kunal2791/cldcvr.git
+#     targetRevision: main
